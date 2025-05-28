@@ -153,7 +153,9 @@ function getValidCombinationIndices() {
   return validCombinations
     .map((combo, index) => {
       // Pour chaque catégorie avec une sélection, vérifier la compatibilité
-      for (const [category, selectedValues] of Object.entries(selectedItems)) {
+      for (const [category, selectedValues] of Object.entries(
+        selectedItems
+      )) {
         if (selectedValues.length === 0) continue;
 
         const categoryIndex = {
@@ -177,154 +179,19 @@ function getValidCombinationIndices() {
     .filter((index) => index !== null);
 }
 
-// Gestion du clic sur un élément de format
-function handleItemClick(event) {
-  const item = event.currentTarget;
-  const category = item.getAttribute("data-category");
-  const id = item.getAttribute("data-id");
-
-  // Empêcher de cliquer sur un élément désactivé
-  if (item.classList.contains("disabled")) {
-    return;
-  }
-
-  const isActive = item.classList.contains("active");
-
-  if (isActive) {
-    // Désélectionner
-    item.classList.remove("active");
-    selectedItems[category] = selectedItems[category].filter((i) => i !== id);
-  } else {
-    // Sélectionner
-    item.classList.add("active");
-    selectedItems[category].push(id);
-  }
-
-  // Mise à jour de l'interface
-  updateInterface();
-}
-
-// Gestion du clic sur un bouton de service
-function handleServiceClick(event) {
-  const button = event.currentTarget;
-  const service = button.getAttribute("data-service");
-
-  // Empêcher de cliquer sur un bouton désactivé
-  if (button.classList.contains("disabled")) {
-    return;
-  }
-
-  const isActive = button.classList.contains("active");
-
-  if (isActive) {
-    // Désélectionner
-    button.classList.remove("active");
-    selectedItems.service = selectedItems.service.filter((s) => s !== service);
-  } else {
-    // Sélectionner
-    button.classList.add("active");
-    selectedItems.service.push(service);
-  }
-
-  // Mise à jour de l'interface
-  updateInterface();
-}
-
-// Mise à jour de l'interface en fonction de la sélection
-function updateInterface() {
+// Mise à jour de la sidebar
+function updateSidebar() {
+  const content = document.getElementById("sidebarContent");
+  
   // Vérifier si une sélection est active
   const hasSelection = Object.values(selectedItems).some(
     (arr) => arr.length > 0
   );
 
   if (!hasSelection) {
-    // Si aucune sélection, tout activer
-    document.querySelectorAll(".format-item, .service-button").forEach((el) => {
-      el.classList.remove("active");
-      el.classList.remove("disabled");
-    });
-
-    // Réinitialisation du panneau de sélection
-    updateSelectionPanel();
+    content.innerHTML = "";
     return;
   }
-
-  // Mise à jour de tous les éléments de format
-  document.querySelectorAll(".format-item").forEach((item) => {
-    const category = item.getAttribute("data-category");
-    const id = item.getAttribute("data-id");
-
-    // Les options valides pour cette catégorie
-    const validOptions = getValidOptions(category);
-
-    // Conserver l'état actif si sélectionné
-    const isSelected = selectedItems[category].includes(id);
-
-    if (isSelected) {
-      item.classList.add("active");
-      item.classList.remove("disabled");
-    } else {
-      item.classList.remove("active");
-
-      // Désactiver si non valide
-      if (validOptions.includes(id)) {
-        item.classList.remove("disabled");
-      } else {
-        item.classList.add("disabled");
-      }
-    }
-  });
-
-  // Mise à jour des boutons de service
-  document.querySelectorAll(".service-button").forEach((button) => {
-    const service = button.getAttribute("data-service");
-
-    // Les services valides
-    const validServices = getValidOptions("service");
-
-    // On conserve l'état actif si sélectionné
-    const isSelected = selectedItems.service.includes(service);
-
-    if (isSelected) {
-      button.classList.add("active");
-      button.classList.remove("disabled");
-    } else {
-      button.classList.remove("active");
-
-      // Désactiver si non valide
-      if (validServices.includes(service)) {
-        button.classList.remove("disabled");
-      } else {
-        button.classList.add("disabled");
-      }
-    }
-  });
-
-  // Mise à jour du panneau de sélection
-  updateSelectionPanel();
-}
-
-// Mise à jour du panneau récapitulatif
-function updateSelectionPanel() {
-  const panel = document.getElementById("selectionPanel");
-  const content = document.getElementById("selectionContent");
-
-  // Vérifier si une sélection est active
-  const hasSelection = Object.values(selectedItems).some(
-    (arr) => arr.length > 0
-  );
-
-  if (!hasSelection) {
-    panel.classList.add("empty");
-    content.innerHTML = `
-                <p>Aucune sélection active</p>
-                <p><small>Cliquer sur les éléments ci-dessous pour découvrir les combinaisons possibles.</small></p>
-            `;
-    return;
-  }
-
-  // Retirer la classe empty et construire le contenu
-  panel.classList.remove("empty");
 
   // Catégories et libellés
   const categories = {
@@ -443,7 +310,7 @@ function updateSelectionPanel() {
 
     if (selectedItems.description.includes("Public")) {
       details.push(
-        "Le format <strong>Public</strong> est une version simplifiée des métadonnées, disponible en CSV UTF-8."
+        "Le format <strong>public</strong> est accessible depuis le catalogue général, disponible en CSV UTF-8."
       );
     }
 
@@ -568,13 +435,15 @@ function updateSelectionPanel() {
       detailsHTML = `
                     <div class="detail-box">
                         <ul>
-                            ${details.map((exp) => `<li>${exp}</li>`).join("")}
+                            ${details
+                              .map((exp) => `<li>${exp}</li>`)
+                              .join("")}
                         </ul>
                     </div>
                 `;
     }
   } else {
-    // Au cas où aucune combinaison n'est valide -- on sait jamais
+    // Au cas où aucune combinaison n'est valide
     detailsHTML = `
                 <div class="detail-box" style="border-left-color: #dc3545; background-color: rgba(220, 53, 69, 0.1);">
                     <h4 style="color: #dc3545;">❌ Aucune combinaison valide</h4>
@@ -585,16 +454,150 @@ function updateSelectionPanel() {
   }
 
   content.innerHTML = `
-            <h3 class="selection-title">Votre sélection</h3>
-            <div class="selection-layout">
-                <div class="selection-left">
-                    ${tagsHTML}
-                </div>
-                <div class="selection-right">
-                    ${detailsHTML}
-                </div>
-            </div>
+            ${tagsHTML}
+            ${detailsHTML}
         `;
+}
+
+// Gestion du clic sur un élément de format
+function handleItemClick(event) {
+  const item = event.currentTarget;
+  const category = item.getAttribute("data-category");
+  const id = item.getAttribute("data-id");
+
+  // Empêcher de cliquer sur un élément désactivé
+  if (item.classList.contains("disabled")) {
+    return;
+  }
+
+  const isActive = item.classList.contains("active");
+
+  if (isActive) {
+    // Désélectionner
+    item.classList.remove("active");
+    selectedItems[category] = selectedItems[category].filter(
+      (i) => i !== id
+    );
+  } else {
+    // Sélectionner
+    item.classList.add("active");
+    selectedItems[category].push(id);
+  }
+
+  // Mise à jour de l'interface
+  updateInterface();
+  console.log("Selection updated:", selectedItems); // Debug
+}
+
+// Gestion du clic sur un bouton de service
+function handleServiceClick(event) {
+  const button = event.currentTarget;
+  const service = button.getAttribute("data-service");
+
+  // Empêcher de cliquer sur un bouton désactivé
+  if (button.classList.contains("disabled")) {
+    return;
+  }
+
+  const isActive = button.classList.contains("active");
+
+  if (isActive) {
+    // Désélectionner
+    button.classList.remove("active");
+    selectedItems.service = selectedItems.service.filter(
+      (s) => s !== service
+    );
+  } else {
+    // Sélectionner
+    button.classList.add("active");
+    selectedItems.service.push(service);
+  }
+
+  // Mise à jour de l'interface
+  updateInterface();
+}
+
+// Mise à jour de l'interface en fonction de la sélection
+function updateInterface() {
+  // Vérifier si une sélection est active
+  const hasSelection = Object.values(selectedItems).some(
+    (arr) => arr.length > 0
+  );
+
+  // Mise à jour de la sidebar
+  const sidebar = document.getElementById("selectionSidebar");
+  
+  if (hasSelection) {
+    sidebar.classList.add("active");
+  } else {
+    sidebar.classList.remove("active");
+  }
+
+  if (!hasSelection) {
+    // Si aucune sélection, tout activer
+    document
+      .querySelectorAll(".format-item, .service-button")
+      .forEach((el) => {
+        el.classList.remove("active");
+        el.classList.remove("disabled");
+      });
+
+    return;
+  }
+
+  // Mise à jour de tous les éléments de format
+  document.querySelectorAll(".format-item").forEach((item) => {
+    const category = item.getAttribute("data-category");
+    const id = item.getAttribute("data-id");
+
+    // Les options valides pour cette catégorie
+    const validOptions = getValidOptions(category);
+
+    // Conserver l'état actif si sélectionné
+    const isSelected = selectedItems[category].includes(id);
+
+    if (isSelected) {
+      item.classList.add("active");
+      item.classList.remove("disabled");
+    } else {
+      item.classList.remove("active");
+
+      // Désactiver si non valide
+      if (validOptions.includes(id)) {
+        item.classList.remove("disabled");
+      } else {
+        item.classList.add("disabled");
+      }
+    }
+  });
+
+  // Mise à jour des boutons de service
+  document.querySelectorAll(".service-button").forEach((button) => {
+    const service = button.getAttribute("data-service");
+
+    // Les services valides
+    const validServices = getValidOptions("service");
+
+    // On conserve l'état actif si sélectionné
+    const isSelected = selectedItems.service.includes(service);
+
+    if (isSelected) {
+      button.classList.add("active");
+      button.classList.remove("disabled");
+    } else {
+      button.classList.remove("active");
+
+      // Désactiver si non valide
+      if (validServices.includes(service)) {
+        button.classList.remove("disabled");
+      } else {
+        button.classList.add("disabled");
+      }
+    }
+  });
+
+  // Mise à jour de la sidebar
+  updateSidebar();
 }
 
 // Réinitialisation de la sélection
@@ -605,11 +608,13 @@ function resetSelection() {
   }
 
   // Réinitialisation de l'interface
-  document.querySelectorAll(".format-item, .service-button").forEach((el) => {
-    el.classList.remove("active");
-    el.classList.remove("disabled");
-  });
+  document
+    .querySelectorAll(".format-item, .service-button")
+    .forEach((el) => {
+      el.classList.remove("active");
+      el.classList.remove("disabled");
+    });
 
-  // Mise à jour du panneau de sélection
-  updateSelectionPanel();
+  // Masquer la sidebar
+  document.getElementById("selectionSidebar").classList.remove("active");
 }

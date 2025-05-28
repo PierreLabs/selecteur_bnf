@@ -17,20 +17,27 @@
           les formats, sources de données, modes de récupération et services
           proposés par la BnF.
         </p>
-        <button class="reset-button" id="resetButton">Réinitialisation</button>
       </div>
 
-      <div class="selection-panel empty" id="selectionPanel">
-        <div class="selection-panel-content" id="selectionContent">
-          <p>Aucune sélection active</p>
-          <p>
-            <small
-              >Cliquer sur les éléments ci-dessous pour découvrir les
-              combinaisons possibles.</small
-            >
-          </p>
+      <div class="main-layout">
+        <!-- Sidebar de sélection -->
+        <div class="selection-sidebar" id="selectionSidebar">
+          <div class="sidebar-header">
+            <h3 class="sidebar-title">Votre sélection</h3>
+            <button class="reset-button" id="resetButton">
+              Réinitialiser
+            </button>
+          </div>
+          <div class="sidebar-content" id="sidebarContent">
+            <!-- Le contenu sera généré par JavaScript -->
+          </div>
         </div>
-      </div>
+
+        <!-- Contenu principal -->
+        <div class="main-content">
+
+
+
 
       <table class="matrix-table">
         <thead>
@@ -143,9 +150,9 @@
                   class="format-item"
                   data-category="description"
                   data-id="Public">
-                  <div class="tooltip-box">Format public simplifié</div>
-                  PUBLIC
-                  <div class="format-label">Public</div>
+                  <div class="tooltip-box">CSV public</div>
+                  CSV PUBLIC
+                  <div class="format-label">CSV public</div>
                 </div>
               </div>
             </td>
@@ -326,6 +333,8 @@
           </tr>
         </tbody>
       </table>
+        </div>
+      </div>
     </div>
 
     <script src="script.js"></script>
