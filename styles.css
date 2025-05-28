@@ -206,7 +206,7 @@ body {
   .main-layout {
     flex-direction: column;
   }
-  
+
   .selection-sidebar {
     width: 100% !important;
     position: fixed;
@@ -218,17 +218,17 @@ body {
     transform: translateY(100%);
     opacity: 1;
   }
-  
+
   .selection-sidebar.active {
     transform: translateY(0);
   }
-  
+
   .sidebar-header {
     flex-direction: column;
     gap: 10px;
     align-items: stretch;
   }
-  
+
   .reset-button {
     justify-content: center;
     width: 100%;

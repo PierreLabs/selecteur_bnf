@@ -153,9 +153,7 @@ function getValidCombinationIndices() {
   return validCombinations
     .map((combo, index) => {
       // Pour chaque catégorie avec une sélection, vérifier la compatibilité
-      for (const [category, selectedValues] of Object.entries(
-        selectedItems
-      )) {
+      for (const [category, selectedValues] of Object.entries(selectedItems)) {
         if (selectedValues.length === 0) continue;
 
         const categoryIndex = {
@@ -182,7 +180,7 @@ function getValidCombinationIndices() {
 // Mise à jour de la sidebar
 function updateSidebar() {
   const content = document.getElementById("sidebarContent");
-  
+
   // Vérifier si une sélection est active
   const hasSelection = Object.values(selectedItems).some(
     (arr) => arr.length > 0
@@ -435,9 +433,7 @@ function updateSidebar() {
       detailsHTML = `
                     <div class="detail-box">
                         <ul>
-                            ${details
-                              .map((exp) => `<li>${exp}</li>`)
-                              .join("")}
+                            ${details.map((exp) => `<li>${exp}</li>`).join("")}
                         </ul>
                     </div>
                 `;
@@ -475,9 +471,7 @@ function handleItemClick(event) {
   if (isActive) {
     // Désélectionner
     item.classList.remove("active");
-    selectedItems[category] = selectedItems[category].filter(
-      (i) => i !== id
-    );
+    selectedItems[category] = selectedItems[category].filter((i) => i !== id);
   } else {
     // Sélectionner
     item.classList.add("active");
@@ -504,9 +498,7 @@ function handleServiceClick(event) {
   if (isActive) {
     // Désélectionner
     button.classList.remove("active");
-    selectedItems.service = selectedItems.service.filter(
-      (s) => s !== service
-    );
+    selectedItems.service = selectedItems.service.filter((s) => s !== service);
   } else {
     // Sélectionner
     button.classList.add("active");
@@ -526,7 +518,7 @@ function updateInterface() {
 
   // Mise à jour de la sidebar
   const sidebar = document.getElementById("selectionSidebar");
-  
+
   if (hasSelection) {
     sidebar.classList.add("active");
   } else {
@@ -535,12 +527,10 @@ function updateInterface() {
 
   if (!hasSelection) {
     // Si aucune sélection, tout activer
-    document
-      .querySelectorAll(".format-item, .service-button")
-      .forEach((el) => {
-        el.classList.remove("active");
-        el.classList.remove("disabled");
-      });
+    document.querySelectorAll(".format-item, .service-button").forEach((el) => {
+      el.classList.remove("active");
+      el.classList.remove("disabled");
+    });
 
     return;
   }
@@ -608,12 +598,10 @@ function resetSelection() {
   }
 
   // Réinitialisation de l'interface
-  document
-    .querySelectorAll(".format-item, .service-button")
-    .forEach((el) => {
-      el.classList.remove("active");
-      el.classList.remove("disabled");
-    });
+  document.querySelectorAll(".format-item, .service-button").forEach((el) => {
+    el.classList.remove("active");
+    el.classList.remove("disabled");
+  });
 
   // Masquer la sidebar
   document.getElementById("selectionSidebar").classList.remove("active");

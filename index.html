@@ -24,315 +24,344 @@
         <div class="selection-sidebar" id="selectionSidebar">
           <div class="sidebar-header">
             <h3 class="sidebar-title">Votre sélection</h3>
-            <button class="reset-button" id="resetButton">
-              Réinitialiser
-            </button>
+            <button class="reset-button" id="resetButton">Réinitialiser</button>
           </div>
           <div class="sidebar-content" id="sidebarContent">
-            <!-- Le contenu sera généré par JavaScript -->
+            <!-- Le contenu généré par JavaScript -->
           </div>
         </div>
 
         <!-- Contenu principal -->
         <div class="main-content">
+          <table class="matrix-table">
+            <thead>
+              <tr>
+                <th>Type de notices</th>
+                <th>Source des données</th>
+                <th>Format de description</th>
+                <th>Format d'échange</th>
+                <th>Encodage</th>
+                <th>Mode de sélection</th>
+                <th>Mode de récupération</th>
+                <th>Services de récupération</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="category-title">Type</div>
+                  <div class="item-grid">
+                    <div
+                      class="format-item bib-item"
+                      data-category="notice"
+                      data-id="BIB"
+                    >
+                      <div class="tooltip-box">Notices bibliographiques</div>
+                      BIB
+                      <div class="format-label">Biblio</div>
+                    </div>
 
-
-
-
-      <table class="matrix-table">
-        <thead>
-          <tr>
-            <th>Type de notices</th>
-            <th>Source des données</th>
-            <th>Format de description</th>
-            <th>Format d'échange</th>
-            <th>Encodage</th>
-            <th>Mode de sélection</th>
-            <th>Mode de récupération</th>
-            <th>Services de récupération</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <div class="category-title">Type</div>
-              <div class="item-grid">
-                <div
-                  class="format-item bib-item"
-                  data-category="notice"
-                  data-id="BIB">
-                  <div class="tooltip-box">Notices bibliographiques</div>
-                  BIB
-                  <div class="format-label">Biblio</div>
-                </div>
-
-                <div
-                  class="format-item aut-item"
-                  data-category="notice"
-                  data-id="AUT">
-                  <div class="tooltip-box">Notices d'autorité</div>
-                  AUT
-                  <div class="format-label">Autorité</div>
-                </div>
-              </div>
-            </td>
-            <td>
-              <div class="category-title">Source</div>
-              <div class="item-grid">
-                <div
-                  class="format-item source-item"
-                  data-category="source"
-                  data-id="data.bnf.fr">
-                  <div class="tooltip-box">Données liées data.bnf.fr</div>
-                  DATA.BNF
-                  <div class="format-label">data.bnf.fr</div>
-                </div>
-
-                <div
-                  class="format-item source-item"
-                  data-category="source"
-                  data-id="Gallica">
-                  <div class="tooltip-box">Bibliothèque numérique Gallica</div>
-                  GALLICA
-                  <div class="format-label">Gallica</div>
-                </div>
-
-                <div
-                  class="format-item source-item"
-                  data-category="source"
-                  data-id="Catalogue général">
-                  <div class="tooltip-box">Catalogue général BnF</div>
-                  CATALOGUE
-                  <div class="format-label">Catalogue</div>
-                </div>
-              </div>
-            </td>
-            <td>
-              <div class="category-title">Description</div>
-              <div class="item-grid">
-                <div
-                  class="format-item rdf-item"
-                  data-category="description"
-                  data-id="RDF">
-                  <div class="tooltip-box">Resource Description Framework</div>
-                  RDF
-                  <div class="format-label">RDF</div>
-                </div>
-
-                <div
-                  class="format-item dc-item"
-                  data-category="description"
-                  data-id="Dublin core">
-                  <div class="tooltip-box">Dublin Core</div>
-                  DC
-                  <div class="format-label">Dublin Core</div>
-                </div>
-
-                <div
-                  class="format-item marc-item"
-                  data-category="description"
-                  data-id="Intermarc">
-                  <div class="tooltip-box">Format Intermarc (BnF)</div>
-                  INTERMARC
-                  <div class="format-label">Intermarc</div>
-                </div>
-
-                <div
-                  class="format-item marc-item"
-                  data-category="description"
-                  data-id="Unimarc">
-                  <div class="tooltip-box">Format Unimarc (standard)</div>
-                  UNIMARC
-                  <div class="format-label">Unimarc</div>
-                </div>
-
-                <div
-                  class="format-item"
-                  data-category="description"
-                  data-id="Public">
-                  <div class="tooltip-box">CSV public</div>
-                  CSV PUBLIC
-                  <div class="format-label">CSV public</div>
-                </div>
-              </div>
-            </td>
-            <td>
-              <div class="category-title">Échange</div>
-              <div class="item-grid">
-                <div
-                  class="format-item exchange-item"
-                  data-category="exchange"
-                  data-id="XML">
-                  <div class="tooltip-box">Format XML (balisage)</div>
-                  XML
-                  <div class="format-label">XML</div>
-                </div>
-
-                <div
-                  class="format-item exchange-item"
-                  data-category="exchange"
-                  data-id="CSV">
-                  <div class="tooltip-box">Format CSV (tableur)</div>
-                  CSV
-                  <div class="format-label">CSV</div>
-                </div>
-
-                <div
-                  class="format-item exchange-item"
-                  data-category="exchange"
-                  data-id="JSON">
-                  <div class="tooltip-box">
-                    Format JSON (données structurées)
+                    <div
+                      class="format-item aut-item"
+                      data-category="notice"
+                      data-id="AUT"
+                    >
+                      <div class="tooltip-box">Notices d'autorité</div>
+                      AUT
+                      <div class="format-label">Autorité</div>
+                    </div>
                   </div>
-                  JSON
-                  <div class="format-label">JSON</div>
-                </div>
+                </td>
+                <td>
+                  <div class="category-title">Source</div>
+                  <div class="item-grid">
+                    <div
+                      class="format-item source-item"
+                      data-category="source"
+                      data-id="data.bnf.fr"
+                    >
+                      <div class="tooltip-box">Données liées data.bnf.fr</div>
+                      DATA.BNF
+                      <div class="format-label">data.bnf.fr</div>
+                    </div>
 
-                <div
-                  class="format-item iso-item"
-                  data-category="exchange"
-                  data-id="ISO2709">
-                  <div class="tooltip-box">Format ISO 2709 (MARC)</div>
-                  ISO2709
-                  <div class="format-label">ISO 2709</div>
-                </div>
+                    <div
+                      class="format-item source-item"
+                      data-category="source"
+                      data-id="Gallica"
+                    >
+                      <div class="tooltip-box">
+                        Bibliothèque numérique Gallica
+                      </div>
+                      GALLICA
+                      <div class="format-label">Gallica</div>
+                    </div>
 
-                <div
-                  class="format-item rdf-item"
-                  data-category="exchange"
-                  data-id="NT">
-                  <div class="tooltip-box">Format RDF/NT (N-Triples)</div>
-                  NT
-                  <div class="format-label">N-Triples</div>
-                </div>
-
-                <div
-                  class="format-item rdf-item"
-                  data-category="exchange"
-                  data-id="N3">
-                  <div class="tooltip-box">Format RDF/N3 (Notation 3)</div>
-                  N3
-                  <div class="format-label">Notation 3</div>
-                </div>
-              </div>
-            </td>
-            <td>
-              <div class="category-title">Encodage</div>
-              <div class="item-grid">
-                <div
-                  class="format-item encoding-item"
-                  data-category="encoding"
-                  data-id="UTF-8">
-                  <div class="tooltip-box">Encodage UTF-8 (Unicode)</div>
-                  UTF-8
-                  <div class="format-label">UTF-8</div>
-                </div>
-
-                <div
-                  class="format-item encoding-item"
-                  data-category="encoding"
-                  data-id="ISO5426">
-                  <div class="tooltip-box">Encodage ISO 5426 (ancien)</div>
-                  ISO5426
-                  <div class="format-label">ISO 5426</div>
-                </div>
-              </div>
-            </td>
-            <td>
-              <div class="category-title">Sélection</div>
-              <div class="item-grid">
-                <div
-                  class="format-item selection-item"
-                  data-category="selection"
-                  data-id="Lots">
-                  <div class="tooltip-box">
-                    Récupération par lots pré-constitués
+                    <div
+                      class="format-item source-item"
+                      data-category="source"
+                      data-id="Catalogue général"
+                    >
+                      <div class="tooltip-box">Catalogue général BnF</div>
+                      CATALOGUE
+                      <div class="format-label">Catalogue</div>
+                    </div>
                   </div>
-                  LOTS
-                  <div class="format-label">Lots</div>
-                </div>
+                </td>
+                <td>
+                  <div class="category-title">Description</div>
+                  <div class="item-grid">
+                    <div
+                      class="format-item rdf-item"
+                      data-category="description"
+                      data-id="RDF"
+                    >
+                      <div class="tooltip-box">
+                        Resource Description Framework
+                      </div>
+                      RDF
+                      <div class="format-label">RDF</div>
+                    </div>
 
-                <div
-                  class="format-item selection-item"
-                  data-category="selection"
-                  data-id="Sélection">
-                  <div class="tooltip-box">Sélection personnalisée</div>
-                  SEL
-                  <div class="format-label">Sélection</div>
-                </div>
-              </div>
-            </td>
-            <td>
-              <div class="category-title">Récupération</div>
-              <div class="item-grid">
-                <div
-                  class="format-item recovery-item"
-                  data-category="recovery"
-                  data-id="API">
-                  <div class="tooltip-box">Accès via API</div>
-                  API
-                  <div class="format-label">API</div>
-                </div>
+                    <div
+                      class="format-item dc-item"
+                      data-category="description"
+                      data-id="Dublin core"
+                    >
+                      <div class="tooltip-box">Dublin Core</div>
+                      DC
+                      <div class="format-label">Dublin Core</div>
+                    </div>
 
-                <div
-                  class="format-item recovery-item"
-                  data-category="recovery"
-                  data-id="Intégrée">
-                  <div class="tooltip-box">Récupération depuis la BnF</div>
-                  BNF
-                  <div class="format-label">BNF</div>
-                </div>
-              </div>
-            </td>
-            <td>
-              <div class="service-section">
-                <h3 class="service-title">Services</h3>
-                <div class="service-grid">
-                  <button class="service-button" data-service="SPARQL">
-                    SPARQL
-                  </button>
-                  <button class="service-button" data-service="OAI-CAT">
-                    OAI-CAT
-                  </button>
-                  <button class="service-button" data-service="OAI-NUM">
-                    OAI-NUM
-                  </button>
-                  <button class="service-button" data-service="SRU Catalogue">
-                    SRU Catalogue
-                  </button>
-                  <button class="service-button" data-service="SRU Gallica">
-                    SRU Gallica
-                  </button>
-                  <button class="service-button" data-service="Z39.50">
-                    Z39.50
-                  </button>
-                  <button class="service-button" data-service="Export CSV">
-                    Export CSV
-                  </button>
-                  <button class="service-button" data-service="Dumps de data">
-                    Dumps de data
-                  </button>
-                  <button
-                    class="service-button"
-                    data-service="Dumps de Gallica">
-                    Dumps de Gallica
-                  </button>
-                  <button
-                    class="service-button"
-                    data-service="Produits catalogue">
-                    Produits catalogue
-                  </button>
-                  <button
-                    class="service-button"
-                    data-service="Transfert de notices">
-                    Transfert de notices
-                  </button>
-                </div>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+                    <div
+                      class="format-item marc-item"
+                      data-category="description"
+                      data-id="Intermarc"
+                    >
+                      <div class="tooltip-box">Format Intermarc (BnF)</div>
+                      INTERMARC
+                      <div class="format-label">Intermarc</div>
+                    </div>
+
+                    <div
+                      class="format-item marc-item"
+                      data-category="description"
+                      data-id="Unimarc"
+                    >
+                      <div class="tooltip-box">Format Unimarc (standard)</div>
+                      UNIMARC
+                      <div class="format-label">Unimarc</div>
+                    </div>
+
+                    <div
+                      class="format-item"
+                      data-category="description"
+                      data-id="Public"
+                    >
+                      <div class="tooltip-box">CSV public</div>
+                      CSV PUBLIC
+                      <div class="format-label">CSV public</div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="category-title">Échange</div>
+                  <div class="item-grid">
+                    <div
+                      class="format-item exchange-item"
+                      data-category="exchange"
+                      data-id="XML"
+                    >
+                      <div class="tooltip-box">Format XML (balisage)</div>
+                      XML
+                      <div class="format-label">XML</div>
+                    </div>
+
+                    <div
+                      class="format-item exchange-item"
+                      data-category="exchange"
+                      data-id="CSV"
+                    >
+                      <div class="tooltip-box">Format CSV (tableur)</div>
+                      CSV
+                      <div class="format-label">CSV</div>
+                    </div>
+
+                    <div
+                      class="format-item exchange-item"
+                      data-category="exchange"
+                      data-id="JSON"
+                    >
+                      <div class="tooltip-box">
+                        Format JSON (données structurées)
+                      </div>
+                      JSON
+                      <div class="format-label">JSON</div>
+                    </div>
+
+                    <div
+                      class="format-item iso-item"
+                      data-category="exchange"
+                      data-id="ISO2709"
+                    >
+                      <div class="tooltip-box">Format ISO 2709 (MARC)</div>
+                      ISO2709
+                      <div class="format-label">ISO 2709</div>
+                    </div>
+
+                    <div
+                      class="format-item rdf-item"
+                      data-category="exchange"
+                      data-id="NT"
+                    >
+                      <div class="tooltip-box">Format RDF/NT (N-Triples)</div>
+                      NT
+                      <div class="format-label">N-Triples</div>
+                    </div>
+
+                    <div
+                      class="format-item rdf-item"
+                      data-category="exchange"
+                      data-id="N3"
+                    >
+                      <div class="tooltip-box">Format RDF/N3 (Notation 3)</div>
+                      N3
+                      <div class="format-label">Notation 3</div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="category-title">Encodage</div>
+                  <div class="item-grid">
+                    <div
+                      class="format-item encoding-item"
+                      data-category="encoding"
+                      data-id="UTF-8"
+                    >
+                      <div class="tooltip-box">Encodage UTF-8 (Unicode)</div>
+                      UTF-8
+                      <div class="format-label">UTF-8</div>
+                    </div>
+
+                    <div
+                      class="format-item encoding-item"
+                      data-category="encoding"
+                      data-id="ISO5426"
+                    >
+                      <div class="tooltip-box">Encodage ISO 5426 (ancien)</div>
+                      ISO5426
+                      <div class="format-label">ISO 5426</div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="category-title">Sélection</div>
+                  <div class="item-grid">
+                    <div
+                      class="format-item selection-item"
+                      data-category="selection"
+                      data-id="Lots"
+                    >
+                      <div class="tooltip-box">
+                        Récupération par lots pré-constitués
+                      </div>
+                      LOTS
+                      <div class="format-label">Lots</div>
+                    </div>
+
+                    <div
+                      class="format-item selection-item"
+                      data-category="selection"
+                      data-id="Sélection"
+                    >
+                      <div class="tooltip-box">Sélection personnalisée</div>
+                      SEL
+                      <div class="format-label">Sélection</div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="category-title">Récupération</div>
+                  <div class="item-grid">
+                    <div
+                      class="format-item recovery-item"
+                      data-category="recovery"
+                      data-id="API"
+                    >
+                      <div class="tooltip-box">Accès via API</div>
+                      API
+                      <div class="format-label">API</div>
+                    </div>
+
+                    <div
+                      class="format-item recovery-item"
+                      data-category="recovery"
+                      data-id="Intégrée"
+                    >
+                      <div class="tooltip-box">Récupération depuis la BnF</div>
+                      BNF
+                      <div class="format-label">BNF</div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="service-section">
+                    <h3 class="service-title">Services</h3>
+                    <div class="service-grid">
+                      <button class="service-button" data-service="SPARQL">
+                        SPARQL
+                      </button>
+                      <button class="service-button" data-service="OAI-CAT">
+                        OAI-CAT
+                      </button>
+                      <button class="service-button" data-service="OAI-NUM">
+                        OAI-NUM
+                      </button>
+                      <button
+                        class="service-button"
+                        data-service="SRU Catalogue"
+                      >
+                        SRU Catalogue
+                      </button>
+                      <button class="service-button" data-service="SRU Gallica">
+                        SRU Gallica
+                      </button>
+                      <button class="service-button" data-service="Z39.50">
+                        Z39.50
+                      </button>
+                      <button class="service-button" data-service="Export CSV">
+                        Export CSV
+                      </button>
+                      <button
+                        class="service-button"
+                        data-service="Dumps de data"
+                      >
+                        Dumps de data
+                      </button>
+                      <button
+                        class="service-button"
+                        data-service="Dumps de Gallica"
+                      >
+                        Dumps de Gallica
+                      </button>
+                      <button
+                        class="service-button"
+                        data-service="Produits catalogue"
+                      >
+                        Produits catalogue
+                      </button>
+                      <button
+                        class="service-button"
+                        data-service="Transfert de notices"
+                      >
+                        Transfert de notices
+                      </button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
